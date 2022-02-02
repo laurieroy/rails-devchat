@@ -1,7 +1,14 @@
-class MessagesController < ApplicationController
+class ChannelsController < ApplicationController
+	
+	def index
+		channels = Channel.all
+
+		render json: channels, only: [:id, :name] 
+	end
+	
 	def show
 		channel = Channel.find(params[:id])
 
-		render json: channel, include: [:messages]
+		render json: channel, only: [:id, :name], include: {messages: {only: [:username, :message, :id]} }
 	end
 end
