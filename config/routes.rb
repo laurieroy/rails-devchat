@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-
-  get 'session/create'
-  resources :messages, only: [:destroy]
+  
   resources :sessions, only: [:create] 
   resources :users
+  resources :messages, only: [:destroy]
   resources :channels, only: [:show, :index] do
     resources :messages, only: [:create] 
   end
